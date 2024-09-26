@@ -1,5 +1,6 @@
 import 'package:buz_tracker/Service/SupabaseClient.dart';
 import 'package:buz_tracker/helper/CustomTheme.dart';
+import 'package:buz_tracker/helper/api-keys.dart';
 import 'package:buz_tracker/model/UserModel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -14,9 +15,8 @@ void main() async {
 
   await Hive.initFlutter();
   await Supabase.initialize(
-      url: 'https://qahhhrfvquiwcucrxiey.supabase.co',
-      anonKey:
-          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFhaGhocmZ2cXVpd2N1Y3J4aWV5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTkxMTg5MzUsImV4cCI6MjAzNDY5NDkzNX0.DlRaySMxVTaYLyhfHP9Q-VQlWKpRW7kZ13jS-2WgKEo');
+      url: apiKeys["SUPABASE_URL"] ?? "",
+      anonKey: apiKeys["SUPABASE_ANON_KEY"] ?? "");
 
   SupabaseInstance();
   Hive.registerAdapter(UserModelAdapter());
